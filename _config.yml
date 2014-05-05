@@ -1,0 +1,17 @@
+name: Jekyll Test
+description: A brief test of the jekyll generator
+
+url: "http://localhost:4000"
+
+paginate: 10
+
+markdown: rdiscount
+permalink: pretty
+
+authors:
+  pete:
+    display_name: Pete
+    avatar: http://andaday.com/img/pete.jpg
+  lisa:
+    display_name: Lisa
+    avatar: http://andaday.com/img/lisa.jpg

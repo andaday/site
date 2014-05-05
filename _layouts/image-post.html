@@ -1,0 +1,51 @@
+{% assign author = site.authors[page.author] %}
+{% include header.html %}
+<div id="single-post" class="page container">
+  <div class="row hidden-phone title-logo">
+    <div class="offset3 span6">
+      <h1><a href="/blog" title="And a Day Photography | Blog"><img data-src="http://app.resrc.it/o=96/http://andaday.com/wp-content/themes/aad_git/_include/img/aad-logo.jpg" class="resrc" alt="Sydney Wedding Photographers - And a Day Photography" nopin="nopin" /></a></h1>
+    </div>
+  </div>
+
+  <article class="post">
+    <div class="row">
+      <div class="span4 post-text">
+        <h2 class="blog-title"><a href="{{ site.url }}{{ page.url }}">{{ page.title }}</a></h2>
+        <img src="{{ author.avatar }}" class="post-author-img" alt="{{ page.author }}" />
+        <div class ="post-meta">              
+          <div class="post-author">{{ author.display_name }}</div>
+          <div class="post-pubdate">
+            <time datetime="{{ page.date | date: "%Y-%m-%d" }}  pubdate">{{ page.date | date: "%Y-%m-%d" }}</time>
+          </div>
+        </div>
+                
+        <div class="post-comments-link">
+          <a href="#1625_respond">Comments (<fb:comments-count href="{{ site.url }}{{ page.url }}"></fb:comments-count>)</a>
+        </div>
+        <div class="post-content">
+          {{ content }}
+        </div>
+      </div>    
+      <div class="post-images span8 ">
+        {% if page.imagerows %}
+          {% assign image_count = 0 %}
+          {% for imagerow in page.imagerows %}
+            <div class="photo-row">
+            {% for image in imagerow.images %}
+              {% capture image_count %}{{ image_count | plus:1 }}{% endcapture %}
+              {% if imagerow.ratio %}{% assign image_ratio = imagerow.ratio %}{% else %}{% assign image_ratio = 0.666666667 %}{% endif %}
+              <div class="pgrid{{ forloop.length }}">
+                <div class="image-pad" style="padding-bottom:{{ image_ratio | times: 100}}%">
+                  <img src="{{ site.url }}/assets/{{ image }}" class="resrc" alt="{{page.title}} - {{ image_count }}" />
+                </div>
+              </div>
+            {% endfor %}  
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    </div>
+  </article>  
+</div> 
+
+{% include footer.html %}
